@@ -21,7 +21,7 @@ import TauriApi from "../parts/TauriApi.vue";
 
     <h2>リンク</h2>
     <div class="card">
-      <router-link to="/about">Tauri機能検証　２</router-link>
+      <router-link to="/poc2">Tauri機能検証　２</router-link>
     </div>
 
   </div>
