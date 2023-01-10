@@ -7,7 +7,7 @@ mod handler;
 use handler::data_communication::{command_with_error, command_with_object};
 
 mod setup;
-use setup::interrupt::{listen_interrupt};
+use setup::interrupt::{listen_interrupt,make_interrupt_thread};
 
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
@@ -20,6 +20,7 @@ fn main() {
     tauri::Builder::default()
         .setup (|app|{
             listen_interrupt(app);
+            make_interrupt_thread(app);
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![

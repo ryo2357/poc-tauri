@@ -3,29 +3,32 @@ import { emit } from '@tauri-apps/api/event'
 import { listen } from '@tauri-apps/api/event'
 import { onMounted,ref } from 'vue'
 
-const receiveState = ref(`never received`)
+const receiveValue = ref(0)
 const receiveTime = ref(`never received`)
 
 onMounted(async() =>{
-  await listen('interrupt-from-back', (event) => {
+  await listen('interrupt-from-struct', (event) => {
     // event.event is the event name (useful if you want to use a single callback fn for multiple event types)
     // event.payload is the payload object
-    receiveState.value = event.payload as string
+    receiveValue.value = event.payload as number
     receiveTime.value = new Date().toISOString()
   })
 })
 
-function emitMessage() {
-    emit('interrupt-to-back', {
-      theMessage: 'Tauri is awesome!',
-    })
+function startProcess() {
+    emit('start-struct-process')
+}
+
+function stopProcess() {
+    emit('stop-struct-process')
 }
 
 </script>
 
 <template>
   <div class="card">
-    <button type="button" @click="emitMessage()">Rustへの割り込み</button>
-    <p>受信時間：{{ receiveTime }}：、状態：{{ receiveState }}</p>
+    <button type="button" @click="startProcess()">処理の開始</button>
+    <button type="button" @click="stopProcess()">処理の停止</button>
+    <p>受信時間{{ receiveTime }}：、状態：{{ receiveValue }}</p>
   </div>
 </template>
