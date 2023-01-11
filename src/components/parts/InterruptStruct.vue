@@ -19,16 +19,12 @@ function startProcess() {
     emit('start-struct-process')
 }
 
-function stopProcess() {
-    emit('stop-struct-process')
-}
 
 </script>
 
 <template>
   <div class="card">
-    <button type="button" @click="startProcess()">処理の開始</button>
-    <button type="button" @click="stopProcess()">処理の停止</button>
+    <button type="button" @click="startProcess()">構造体へのemit</button>
     <p>受信時間{{ receiveTime }}：、状態：{{ receiveValue }}</p>
   </div>
 </template>
