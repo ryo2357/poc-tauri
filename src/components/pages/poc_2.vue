@@ -4,7 +4,7 @@
 import Interrupt from "../parts/Interrupt.vue";
 // import InterruptStruct from "../parts/InterruptStruct.vue";
 // import InterruptState from "../parts/InterruptState.vue";
-import tokioThread from "../parts/tokioThread.vue";
+// import tokioThread from "../parts/tokioThread.vue";
 </script>
 
 <template>
